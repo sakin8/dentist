@@ -10,20 +10,17 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    quote:
-      "The best dental experience I've ever had. The staff is incredibly professional and caring. My smile has never looked better!",
+    quote: "The best dental experience I've ever had. The staff is incredibly professional and caring. My smile has never looked better!",
     name: "Sarah Johnson",
     role: "Marketing Manager",
   },
   {
-    quote:
-      "Amazing service! The dentists are friendly, professional, and truly care about your comfort.",
+    quote: "Amazing service! The dentists are friendly, professional, and truly care about your comfort.",
     name: "Michael Lee",
     role: "Product Designer",
   },
   {
-    quote:
-      "I finally love my smile again. Their attention to detail made all the difference!",
+    quote: "I finally love my smile again. Their attention to detail made all the difference!",
     name: "Emily Carter",
     role: "Software Engineer",
   },
@@ -33,27 +30,18 @@ export default function TestimonialSlider() {
   const [current, setCurrent] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const startAutoPlay = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
+  useEffect(() => {
     intervalRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
     }, 3000);
-  };
-
-  useEffect(() => {
-    startAutoPlay();
 
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
 
-  const prevSlide = () =>
-    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  const nextSlide = () =>
-    setCurrent((prev) => (prev + 1) % testimonials.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % testimonials.length);
 
   return (
     <div id="testimonial" className="w-full flex flex-col items-center bg-[#EEF2F6] py-20 px-4">
@@ -79,30 +67,16 @@ export default function TestimonialSlider() {
         </div>
 
         <div className="flex items-center justify-center space-x-6 mt-8">
-          <button
-            onClick={prevSlide}
-            className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow cursor-pointer"
-          >
-            ←
-          </button>
-
+          <button onClick={prevSlide} className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow cursor-pointer">←</button>
           <div className="flex space-x-2">
             {testimonials.map((_, i) => (
               <span
                 key={i}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  current === i ? "bg-blue-500" : "bg-gray-300"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${current === i ? "bg-blue-500" : "bg-gray-300"}`}
               ></span>
             ))}
           </div>
-
-          <button
-            onClick={nextSlide}
-            className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow cursor-pointer"
-          >
-            →
-          </button>
+          <button onClick={nextSlide} className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow cursor-pointer">→</button>
         </div>
       </div>
     </div>
