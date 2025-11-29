@@ -8,20 +8,18 @@ import ServicesSection from "@/src/components/OurServices";
 import TestimonialSlider from "@/src/components/Testimonial";
 import VapiDentalWidget from "@/src/components/VapiClientWidget";
 
-
 export default function Home() {
   return (
     <>
-      <Header />
-      <HeroSection />
-      <ServicesSection />
-      <BeforeAfter />
-      <TestimonialSlider />
-      <DoctorSection />
-      <AppointmentForm />
-      <Footer />
-
-      <VapiDentalWidget/>
+    <Header/>
+    <HeroSection/>
+    <ServicesSection/>
+    <BeforeAfter/>
+    <TestimonialSlider/>
+    <DoctorSection/>
+    <AppointmentForm/>
+    <Footer/>
+    <VapiDentalWidget/>
     </>
   );
 }
